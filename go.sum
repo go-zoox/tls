@@ -1,0 +1,8 @@
+github.com/go-zoox/crypto v1.0.3 h1:0Lyw4ouusKWevAsS2cb4LbhChstRQlTdsynKzvWxB14=
+github.com/go-zoox/crypto v1.0.3/go.mod h1:HaWRg4tHZamqNyOnNoaK+Rw5eto+su66i8bMMP8UCBU=
+github.com/go-zoox/random v1.0.0 h1:SecY/LTpNUYuHzaH9Rm3yIHt5S9ayyE9q99ed2WKvxg=
+github.com/go-zoox/random v1.0.0/go.mod h1:W+PTQiInxaCngiXpSvycucAKvu1tE/tKlZ9kaMp2/Ys=
+golang.org/x/crypto v0.0.0-20220313003712-b769efc7c000 h1:SL+8VVnkqyshUSz5iNnXtrBQzvFF2SkROm6t5RczFAE=
+golang.org/x/crypto v0.0.0-20220313003712-b769efc7c000/go.mod h1:IxCIyHEi3zRg3s0A5j5BB6A9Jmi73HwBIUl50j+osU4=
+golang.org/x/sys v0.0.0-20220128215802-99c3d69c2c27 h1:XDXtA5hveEEV8JB2l7nhMTp3t3cHp9ZpwcdjqyEWLlo=
+golang.org/x/sys v0.0.0-20220128215802-99c3d69c2c27/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
