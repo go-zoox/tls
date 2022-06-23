@@ -12,8 +12,8 @@ func TestClientServer(t *testing.T) {
 	client := NewClient(publickKey)
 	server := NewServer(privateKey)
 
-	fmt.Println("client public key:", client.GetPublicKey())
-	fmt.Println("server private key:", server.GetPrivateKey())
+	// fmt.Println("client public key:", client.GetPublicKey())
+	// fmt.Println("server private key:", server.GetPrivateKey())
 	if client.GetPublicKey() != publickKey {
 		t.Error("client public key is not equal to server private key")
 	}
@@ -34,9 +34,9 @@ func TestClientServer(t *testing.T) {
 		t.Error("client and server negotiate failed")
 	}
 
-	fmt.Println("client secret:", client.GetSecret())
-	fmt.Println("server secret:", server.GetSecret())
-	if client.GetSecret() != server.GetSecret() {
+	fmt.Println("client secret:", string(client.GetSecret()))
+	fmt.Println("server secret:", string(server.GetSecret()))
+	if string(client.GetSecret()) != string(server.GetSecret()) {
 		t.Error("client and server secret not match")
 	}
 

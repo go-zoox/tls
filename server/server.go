@@ -10,7 +10,7 @@ type Server struct {
 	// private key
 	privateKey string
 	// secret
-	secret string
+	secret []byte
 	// algorithms
 	asymmetric *rsa.RSA
 	symmetric  *aes.CFB
@@ -32,7 +32,7 @@ func (t *Server) NegotiateVerify(hash string) (bool, error) {
 		return false, err
 	}
 
-	t.secret = string(secret)
+	t.secret = secret
 	t.symmetric, _ = aes.NewCFB(len(secret)*8, &aes.Base64Encoding{}, nil)
 	// fmt.Println("server secret:", t.secret)
 	return true, nil
@@ -51,7 +51,7 @@ func (t *Server) Decrypt(cipherbytes []byte) (plainbytes []byte, err error) {
 }
 
 // GetSecret returns the secret.
-func (t *Server) GetSecret() string {
+func (t *Server) GetSecret() []byte {
 	return t.secret
 }
 

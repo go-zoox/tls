@@ -14,7 +14,7 @@ type Client struct {
 	// public key
 	publicKey string
 	// secret
-	secret string
+	secret []byte
 	// algorithms
 	asymmetric *rsa.RSAEncryptor
 	symmetric  *aes.CFB
@@ -35,9 +35,12 @@ func New(publicKey string) *Client {
 func (t *Client) NegotiateGenerate() string {
 	// @TODO milliseconds, length: 13
 	timestamp := fmt.Sprintf("%d", time.Now().UnixNano()/int64(time.Millisecond))
-	// length = 32 - 13 = 19
-	random := random.String(19)
-	t.secret = fmt.Sprintf("%s%s", timestamp, random)
+
+	// AES-256-CFB
+	// length = 32 - 13 - 1 = 18
+	random := random.String(18)
+	t.secret = []byte(fmt.Sprintf("%s:%s", timestamp, random))
+
 	// fmt.Println("client secret:", t.secret)
 	t.symmetric, _ = aes.NewCFB(len(t.secret)*8, &aes.Base64Encoding{}, nil)
 
@@ -53,12 +56,12 @@ func (t *Client) Encrypt(plainbytes []byte) (cipherbytes []byte, err error) {
 
 // Decrypt decrypts the ciphertext with the secret.
 func (t *Client) Decrypt(cipherbytes []byte) (plainbytes []byte, err error) {
-	plainbytes, err = t.symmetric.Decrypt(cipherbytes, []byte(t.secret))
+	plainbytes, err = t.symmetric.Decrypt(cipherbytes, t.secret)
 	return
 }
 
 // GetSecret returns the secret.
-func (t *Client) GetSecret() string {
+func (t *Client) GetSecret() []byte {
 	return t.secret
 }
 
